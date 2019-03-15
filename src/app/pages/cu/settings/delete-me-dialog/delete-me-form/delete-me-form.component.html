@@ -1,0 +1,13 @@
+<div class="fl w-100">
+  <form [formGroup]="deleteMeForm" novalidate (ngSubmit)="deleteMe(deleteMeForm)">
+    <div class="mb4 tc">
+      <mat-checkbox formControlName="confirmed" color="primary">Jag har förstått vad detta innebär</mat-checkbox>
+    </div>
+    <div class="fl w-50">
+      <button (click)="dialogRef.close()" mat-raised-button type="button" color="warn" class="w-90">Avbryt</button>
+    </div>
+    <div class="fl w-50">
+      <button mat-raised-button color="primary" class="fr w-90">Ta bort</button>
+    </div>
+  </form>
+</div>

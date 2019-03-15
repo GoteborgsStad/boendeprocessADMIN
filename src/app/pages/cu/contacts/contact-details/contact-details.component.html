@@ -1,0 +1,33 @@
+<div class="w-80 h3 center mb2">
+  <div class="fl mr2">
+    <img src="{{ contactPerson?.user_detail?.image_url }}" alt="" class="w3 h3 br-100" onError="this.src='./assets/images/icons/icon_person_default_gbgblue.svg';">
+  </div>
+  <div class="fl">
+    <h2 class="fl lh-copy">{{ contactPerson?.user_detail.full_name }}
+      <span class="mh2">·</span>
+      <span class="normal">Överblick</span>
+    </h2>
+  </div>
+</div>
+<mat-card class="sb-card big-card bg-primary side-margin-90 side-padding-30 shadow-4-ocean">
+  <mat-card-content>
+    <div class="ph5 aska">
+      <article class="" data-name="slab-stat-small">
+        <div class="cf aska">
+          <dl class="fl w-50 dib-l lh-title">
+            <dd class="f6 fw4 ml0 dark-grey">Telefon:</dd>
+            <dd class="f4 fw6 ml0 indent">{{ contactPerson?.user_detail?.cell_phone_number }}</dd>
+          </dl>
+          <dl class="fl w-50 dib-l lh-title">
+            <dd class="f6 fw4 ml0 dark-grey">E-postadress:</dd>
+            <dd class="f4 fw4 ml0 indent">
+              <a href="mailto:{{ contactPerson?.user_detail?.email }}">{{ contactPerson?.user_detail?.email }}</a>
+            </dd>
+          </dl>
+        </div>
+      </article>
+      <app-contact-adolescent-list [user]="contactPerson"></app-contact-adolescent-list>
+      <hr class="sb-hr mb3">
+    </div>
+  </mat-card-content>
+</mat-card>

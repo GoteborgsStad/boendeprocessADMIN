@@ -1,0 +1,68 @@
+<div class="w-80 center">
+  <div class="fl mr2">
+    <img src="{{ adolescent?.user_detail?.image_url }}" alt="" class="w3 h3 br-100" onError="this.src='./assets/images/icons/icon_person_default_gbgblue.svg';">
+  </div>
+  <div class="fl">
+    <h2 class="fl lh-copy">{{ adolescent?.user_detail?.full_name }}</h2>
+  </div>
+  <div class="fr ml2">
+    <img src="{{ contact?.user_detail?.image_url }}" alt="" class="w3 h3 br-100" onError="this.src='./assets/images/icons/icon_person_default_gbgblue.svg';">
+  </div>
+  <div class="fr">
+    <h2 class="fl lh-copy">{{ contact?.user_detail?.full_name }}</h2>
+  </div>
+</div>
+<div class="fl w-100">
+  <mat-card class="bg-primary sb-card big-card side-margin-90 shadow-4-ocean pa4">
+    <mat-card class="mb3 bg-white sb-card small-card side-margin-30 horizontal-padding-0 vertical-padding-0 top-padding-10 shadow-0">
+      <div #list [scrollTop]="list.scrollHeight" class="chat content ph2">
+        <div *ngFor="let message of chat?.chat_messages" class="fl w-100 mb2">
+
+          <div *ngIf="message?.user?.user_role?.name === 'AU'">
+            <div class="fl mr2 w2">
+              <img src="{{ message.user.user_detail.image_url }}" alt="" class="w2 h2 br-100" onError="this.src='./assets/images/icons/icon_person_default_gbgblue.svg';">
+            </div>
+            <div class="fl w-60">
+              <div class="w-100">
+                <strong>{{ message.user.user_detail.full_name }}</strong>
+              </div>
+              <div class="w-100">
+                <small>{{ message.created_at | moment:"DD MMM HH:mm"}}</small>
+              </div>
+              <div clas="w-100">
+                <div class="fl mw6 bg-default pa2 br3">
+                  <pre>{{ message.body }}</pre>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="message?.user?.user_role?.name === 'CU'">
+            <div class="fr ml2 w2">
+              <img src="{{ message.user.user_detail.image_url }}" alt="" class="w2 h2 br-100" onError="this.src='./assets/images/icons/icon_person_default_gbgblue.svg';">
+            </div>
+            <div class="fr w-60">
+              <div class="tr w-100">
+                <strong>{{ message.user.user_detail.full_name }}</strong>
+              </div>
+              <div class="tr w-100">
+                <small>{{ message.created_at | moment:"DD MMM HH:mm"}}</small>
+              </div>
+              <div clas="w-100">
+                <div class="fr mw6 bg-ocean pa2 br3">
+                  <pre>{{ message.body }}</pre>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </mat-card>
+    <hr class="sb-hr mb3">
+    <mat-card class="bg-white sb-card small-card side-margin-30 top-padding-10 shadow-0 chat input">
+      <app-add-chat-message-form [chat]="chat" (getChatMessage)="getChatMessage($event)"></app-add-chat-message-form>
+    </mat-card>
+    &nbsp;
+  </mat-card>
+</div>

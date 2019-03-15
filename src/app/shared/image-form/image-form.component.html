@@ -1,0 +1,15 @@
+<div class="w-100 h3 mb1 relative">
+  <div class="fl h-100 mr2 w3">
+    <img src="{{imageUrl}}" alt="" class="h-100 w-100 br-100"
+      onError="this.src='./assets/images/icons/icon_person_default_gbgblue.svg';">
+  </div>
+  <div class="fl pt3 mr2" *ngIf="showChange">
+    <form>
+      <input (change)="readUrl($event)" type="file" accept="image/*" #file hidden>
+      <button (click)="file.click()" mat-raised-button color="primary" >Ändra profilbild</button>
+    </form>
+  </div>
+  <div class="fl pt3">
+    <button (click)="reflectDelete()" [disabled]="!imageUrl"mat-raised-button color="warn" *ngIf="takeAwayPictureShouldBeVisible()">Ta bort profilbild</button>
+  </div>
+</div>

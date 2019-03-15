@@ -1,0 +1,81 @@
+.small-button {
+    line-height: 22px !important;
+}
+
+button.mat-mini-fab, button.mat-fab {
+    box-shadow: 0 1px 1px 0px $dark-grey !important;
+}
+
+.mat-mini-fab.extra-mini {
+    height:30px;
+    width: 30px;
+    .mat-button-wrapper {
+        padding: 3px 0;
+    }
+}
+
+.add-button {
+    height: 50px;
+}
+
+.email-button {
+    width: 100%;
+    i {
+        display: inline-block;
+        height: 50px;
+        width: 50px;
+        background: url('../images/icons/icon_letter_n.gbgblue.svg');
+        background-size: 66%;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+}
+
+.mat-button.adolescent-row {
+    background: none;
+    min-width: 25px;
+    span .mat-icon {
+        fill: $dark-grey;
+        display: block;
+    }
+    &.active span .mat-icon {
+        fill: $morot-color;
+    }
+}
+
+.mat-icon-button.sb-datepicker-button {
+    position: absolute;
+    right: -8px;
+    top: -7px;
+    z-index: 100;
+}
+
+.mat-icon-button.floating-folder {
+    position: absolute;
+    right: -15%;
+    top: -10px;
+}
+
+button.mat-arta {
+    background-color: $arta-color;
+    color: white;
+}
+
+.mat-paginator-navigation-next,
+.mat-paginator-navigation-previous {
+    background-color: $ocean-color;
+    color: white;
+    .mat-paginator-increment,
+    .mat-paginator-decrement {
+        border-top: 2px solid white;
+        border-right: 2px solid white;
+    }
+    &:disabled {
+        background-color: $ocean-transparent;
+        color: white;
+    }
+}
+
+.mat-paginator-navigation-previous.mat-icon-button {
+    margin-right: 5px;
+}

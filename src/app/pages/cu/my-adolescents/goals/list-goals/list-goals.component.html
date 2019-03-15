@@ -1,0 +1,81 @@
+<div class="w-80 h3 center mb2">
+  <div class="fl mr2">
+    <img src="{{ user?.user_detail?.image_url }}" alt="" class="w3 h3 br-100" onError="this.src='./assets/images/icons/icon_person_default_gbgblue.svg';">
+  </div>
+  <div class="fl">
+    <h2 class="fl lh-copy">{{ user?.user_detail.full_name }}
+      <span class="mh2">·</span>
+      <span class="normal">Personlig plan</span>
+    </h2>
+  </div>
+</div>
+<hr class="sb-hr mb2 ph3 w-60 center">
+<div class="w-60 h4 center">
+  <div class="w-50 h4 dib fl tc pt2">
+    <mat-icon class="aska icon-60" svgIcon="sb-flower"></mat-icon>
+    <p class="ma0">
+      <span class="b mr0 f3">
+        <span>{{ user?.plan?.amount_of_finished_goals }}</span>/<span class="mr0">{{ user?.plan?.amount_of_goals}}</span>
+      </span>mål avklarade</p>
+    <p class="ma0">sedan startdatum
+      <span class="b ml0">{{ user?.created_at | slice:0:10 }}</span>
+    </p>
+  </div>
+  <div class="w-50 h4 dib fl pt2">
+    <div class="w-80 center pt4">
+      <button mat-raised-button color="primary" [routerLink]="['add']" class="w-100">
+        <mat-icon svgIcon="sb-add" class="mr1"></mat-icon>
+        Lägg till ett mål
+      </button>
+    </div>
+  </div>
+
+</div>
+<hr class="sb-hr mb3 ph3 w-60 center">
+<div class="w-80 center h3">
+
+  <span class="ttu normal fl mr2">Visa mål:
+    <mat-form-field>
+      <mat-select [(ngModel)]="status" (ngModelChange)="statusChange($event)">
+        <mat-option [value]="'Alla'">
+          Alla
+        </mat-option>
+        <mat-option *ngFor="let goalStatus of goalStatuses" [value]="goalStatus.name">
+          {{ goalStatus.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </span>
+
+</div>
+<div class="w-100">
+    <mat-card *ngFor="let goal of goals | pagination: [pageEvent, status, statusKey]" id="big-card-{{goal?.id}}" class="bg-primary sb-card big-card side-margin-90 shadow-4-ocean height-150 pa4 mb3" [style.box-shadow]="'0px 4px ' + goal?.goal_status?.color" [style.border-color]="goal?.goal_status?.color">
+      <mat-icon svgIcon="sb-flower" class="aska v-mid mr1 absolute top-1 left-1" [style.color]="goal?.goal_category?.color"></mat-icon>
+      <div class="absolute top-1 right-1">
+        <button mat-mini-fab [routerLink]="goal?.id + '/edit'" class="bg-ocean">
+          <mat-icon svgIcon="sb-pencil" class="aska"></mat-icon>
+        </button>
+      </div>
+      <div class="ml3 w-90 center">
+        <div class="w-100">
+          <h4 class="b mv0">
+            <span class="ttu">{{goal?.goal_category?.name }}</span> - {{ goal?.name }} </h4>
+          <p id="text-{{goal?.id}}" class="w-100 truncate">
+            {{ goal?.description }}
+          </p>
+          <p class="mb0" *ngIf=" goal?.end_at ">måldatum
+            <strong>{{ goal?.end_at | slice:0:10 }}</strong>
+          </p>
+        </div>
+      </div>
+    </mat-card>
+    <div *ngIf="goals.length < 1">
+      <app-empty-list-card [text]="'Inga mål hittades'"></app-empty-list-card>
+    </div>
+</div>
+<div class="fl w-100">
+  <div class="w-80 center">
+    <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOption" (page)="pageEvent = $event">
+    </mat-paginator>
+  </div>
+</div>

@@ -1,0 +1,45 @@
+<div class="fl w-100">
+  <div class="w-100 h4 pb4">
+    <div class="fl-l center pr4-l w-20">
+      <img src="./assets/images/logos/logo_bankID.svg" alt="" class="h3">
+    </div>
+    <div class="fl w-80">
+      <p class="b">Logga in som auktoriserad kontaktperson på Sambuh</p>
+      <p>Sambuh använder CGI som leverantör av säker inloggning.</p>
+      <p>Välj vilket sätt du vill logga in med:</p>
+    </div>
+  </div>
+  <ng-container *ngIf="view === 0">
+    <div class="center-l w-40-l w-100">
+      <div class="pb2">
+        <button (click)="switchView(1)" tabindex="-1" mat-raised-button color="primary" class="w-100">BankID</button>
+      </div>
+      <div>
+        <button (click)="switchView(2)" tabindex="-1" mat-raised-button color="primary" class="w-100">Mobilt BankID</button>
+      </div>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="view === 1">
+    <div class="center-l w-40-l w-100">
+      <div class="pb2 tc">
+        <p>Försöker starta BankID-appen</p>
+      </div>
+      <div class="pb2 tc">
+        <p>
+          <img src="./assets/images/misc/spinner.gif" alt="" class="h2">
+        </p>
+      </div>
+      <div>
+        <button (click)="switchView(0)" mat-raised-button color="warn" class="w-100">Avbryt</button>
+      </div>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="view === 2">
+    <div class="center-l w-40-l w-100">
+      <app-login-mobile-bankid-form></app-login-mobile-bankid-form>
+      <div>
+        <button (click)="switchView(0)" mat-raised-button color="warn" class="w-100">Avbryt</button>
+      </div>
+    </div>
+  </ng-container>
+</div>

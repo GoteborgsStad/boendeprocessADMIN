@@ -1,0 +1,43 @@
+<form [formGroup]="goalsForm" (ngSubmit)="submitGoals()" class="goal-entry">
+  <div class="cf">
+
+    <mat-form-field class="w-100 mr3">
+      <input matInput type="text" formControlName="name" name="name" placeholder="Målets namn">
+    </mat-form-field>
+
+    <div class="fl w-60 mr3">
+      <div class="fl w-80">
+        <mat-form-field class="w-100">
+          <mat-select placeholder="Målkategori" formControlName="goal_category_id" name="goal_category_id">
+            <mat-option *ngFor="let goalCat of goalCategories" [value]="goalCat?.id">
+              {{ goalCat.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div (click)="openTemplateDialog()" class="fl mt2 ml2 pt2 pointer">
+        <mat-icon svgIcon="sb-folder" class="aska"></mat-icon>
+      </div>
+    </div>
+
+    <div class="w-50 mr3">
+      <div class="fl w-80">
+        <mat-form-field class="w-100">
+          <input matInput formControlName="end_at" [min]="minDate" [matDatepicker]="picker" placeholder="Slutdatum">
+          <mat-datepicker #picker disabled="false" touchUi="true" md-hide-icons="calendar"></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div (click)="picker.open()" class="fl mt2 ml2 pt2 pointer">
+        <mat-icon svgIcon="sb-calendar-n" class="aska"></mat-icon>
+      </div>
+    </div>
+
+    <mat-form-field class="w-100">
+      <textarea matInput matTextareaAutosize matAutosizeMinRows="7" placeholder="Målbeskrivning" formControlName="description" name="description"></textarea>
+    </mat-form-field>
+  </div>
+  <div class="tc pv2 h2">
+    <button mat-raised-button type="button" (click)="abort()" class="fl w-third bg-rost white ">Avbryt</button>
+    <button mat-raised-button type="submit" color="primary" [disabled]="goalsForm.invalid" class="fr w-third">Spara</button>
+  </div>
+</form>

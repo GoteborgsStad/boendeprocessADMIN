@@ -1,0 +1,138 @@
+mat-card {
+  color: $aska-color !important;
+
+  &.sb-card {
+    &.big-card {
+      border: 1px solid $ocean-color;
+      border-radius: 10px !important;
+    }
+    &.small-card {
+      border: 1px solid $aska-color;
+      border-radius: 5px !important;
+    }
+    &.side-padding-90 {
+      padding-left: 90px;
+      padding-right: 90px;
+    }
+    &.side-padding-30 {
+      padding-left: 30px;
+      padding-right: 30px;
+    }
+    &.side-padding-10 {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+    &.vertical-padding-0 {
+      padding-top: 0px;
+      padding-bottom: 0px;
+    }
+    &.horizontal-padding-0 {
+      padding-left: 0px;
+      padding-right: 0px;
+    }
+    &.horizontal-padding-20 {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+    &.vertical-padding-10 {
+      padding-top: 10px;
+      padding-bottom: 10px
+    }
+    &.top-padding-10 {
+      padding-top: 10px;
+    }
+    &.right-padding-0 {
+      padding-right: 0px;
+    }
+    &.side-margin-90 {
+      margin-left: 90px;
+      margin-right: 90px;
+    }
+    &.side-margin-30 {
+      margin-left: 30px;
+      margin-right: 30px;
+    }
+    &.shadow-4-ocean {
+      box-shadow: 0px 4px $ocean-color;
+    }
+    &.shadow-4-aska {
+      box-shadow: 0px 4px $aska-color;
+    }
+    &.shadow-0 {
+      box-shadow: none;
+    }
+    &.height-280 {
+      height: 280px;
+    }
+    &.height-150 {
+      height: 150px;
+    }
+    &.height-130 {
+      height: 130px;
+    }
+    &.width-177 {
+      width: 177px;
+    }
+    &.margin-right-1-rem {
+      margin-right: 1rem;
+    }
+  }
+}
+app-contact-card,
+app-adolescent-card {
+    width: calc(100% - 5px);
+    height: 250px;
+    cursor: pointer;
+  .mat-card {
+    border-radius: 15px;
+    padding: 5px 24px;
+    background-color: $background-color-primary;
+    border: 1px solid $ocean-color;
+    &:not([class*="mat-elevation-z"]) {
+      box-shadow: 0 3px 0 0 $ocean-color;
+      &.look-at-me {
+        box-shadow: 0 3px 0 0 $morot-color;
+        border-color: $morot-color;
+      }
+      &.contact {
+        border-color: $primary-color;
+        box-shadow: 0 3px 0 0 $primary-color;
+      }
+    }
+    .mat-card-content img {
+        display: block;
+        margin: 0 auto 8px;
+    }
+  }
+}
+.add-new-item {
+  .mat-icon {
+    fill: $dark-grey;
+    height: 5rem;
+    width: 5rem;
+    padding-bottom: 2rem;
+  }
+}
+
+.top-left-corner {
+  position: absolute;
+  left: 10px;
+}
+
+span.adolescent {
+  padding: 4px;
+  line-height: 25px;
+  padding-top: 2px;
+  &.look-at-me {
+      background-color: $morot-color
+  }
+  &.brdr-blue {
+      border-color: $ocean-color
+  }
+  &.brdr-yellow {
+      border-color: $senap-color
+  }
+  &.border-orange {
+      border-color: $morot-color
+  }
+}

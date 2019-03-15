@@ -1,0 +1,68 @@
+<form [formGroup]="addContactForm" class="example-form" (ngSubmit)="addContact()">
+  <div class="w-100 h3 mb2">
+    <div class="w-50 fl pa1">
+      <mat-form-field class="w-100">
+        <input matInput placeholder="Förnamn" name="Förnamn" required formControlName="first_name" [errorStateMatcher]="matcher">
+        <mat-error *ngIf="addContactForm.get('first_name').hasError('required')">
+          Förnamn är
+          <strong>obligatoriskt</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="w-50 fl pa1">
+      <mat-form-field class="w-100">
+        <input matInput placeholder="Efternamn" name="Efternamn" required formControlName="last_name" [errorStateMatcher]="matcher">
+        <mat-error *ngIf="addContactForm.get('last_name').hasError('required')">
+          Efternamn är
+          <strong>obligatoriskt</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="w-100 h3 mt1 mb2">
+    <div class="w-50 fl pa1">
+      <mat-form-field class="w-100">
+        <input matInput placeholder="E-postadress" name="E-postadress" required formControlName="email" [errorStateMatcher]="matcher">
+        <mat-error *ngIf="addContactForm.get('email').hasError('email') && !addContactForm.get('email').hasError('required')">
+          Ange en giltig e-postadress
+        </mat-error>
+        <mat-error *ngIf="addContactForm.get('email').hasError('required')">
+          E-postadress är
+          <strong>obligatoriskt</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="w-50 fl pa1">
+      <mat-form-field class="w-100">
+        <input matInput placeholder="Personnummer" name="Personnummer" required formControlName="personal_identity_number" [errorStateMatcher]="matcher">
+        <mat-error *ngIf="addContactForm.get('personal_identity_number').hasError('required')">
+          Personnummer är
+          <strong>obligatoriskt</strong>
+        </mat-error>
+        <mat-error *ngIf="addContactForm.get('personal_identity_number').hasError('minlength') || addContactForm.get('personal_identity_number').hasError('maxlength')">
+          Personnummer måste vara <strong>12</strong> siffror
+        </mat-error>
+        <mat-error *ngIf="addContactForm.get('personal_identity_number').hasError('invalidOrgOrSsn')">
+          Ogiltigt personnummer
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="w-100 h3 mt1 mb2">
+    <div class="w-50 pa1">
+      <mat-form-field class="w-100">
+        <span matPrefix>+46 &nbsp;</span>
+        <input type="tel" matInput formControlName="cell_phone_number" name="cell_phone_number" placeholder="Mobilnummer">
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="fl w-100">
+    <div class="fl w-40">
+      <button (click)="abort()" type="button" mat-raised-button color="warn" class="w-100">Avbryt</button>
+    </div>
+    <div class="fr w-40">
+      <button [disabled]="addContactForm.invalid" mat-raised-button color="primary" class="w-100">Lägg till</button>
+    </div>
+  </div>
+  &nbsp;
+</form>

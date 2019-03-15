@@ -1,0 +1,103 @@
+<div class="w-80 h3 center mb2">
+  <div class="fl mr2">
+    <img src="{{ adolescent?.user_detail?.image_url }}" alt="" class="w3 h3 br-100" onError="this.src='./assets/images/icons/icon_person_default_gbgblue.svg';">
+  </div>
+  <div class="fl">
+    <h2 class="fl lh-copy">{{ adolescent?.user_detail.full_name }}
+      <span class="mh2">·</span>
+      <span class="normal">Uppdrag</span>
+    </h2>
+  </div>
+</div>
+<div class="fl w-100">
+  <div class="w-80 center">
+    <hr class="sb-hr mb3">
+  </div>
+</div>
+<div class="w-80 center">
+  <div class="fl w-70 center">
+    <div class="fl mr2">
+      <h3>Visa uppdrag:</h3>
+    </div>
+    <div class="fl">
+      <mat-form-field>
+        <mat-select placeholder="Status" [(ngModel)]="status" (ngModelChange)="statusChange($event)">
+          <mat-option [value]="'Alla'">
+            Alla
+          </mat-option>
+          <mat-option *ngFor="let assignmentStatus of assignmentStatuses" [value]="assignmentStatus.name">
+            {{ assignmentStatus.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="fr w-30">
+    <div class="w-100">
+      <button mat-raised-button color="primary" routerLink="/cu/minaungdomar/{{userId}}/assignments/add" class="w-100"><mat-icon svgIcon="sb-add" class="mr1"></mat-icon> Skapa nytt uppdrag</button>
+    </div>
+  </div>
+</div>
+<div class="fl w-100">
+  <mat-card *ngFor="let assignment of assignments | pagination: [pageEvent, status, statusKey]" id="big-card-{{assignment?.id}}" class="bg-primary sb-card big-card side-margin-90 shadow-4-ocean height-150 pa4 mb3" [style.box-shadow]="'0px 4px ' + assignment?.assignment_status?.color" [style.border-color]="assignment?.assignment_status?.color">
+    <div class="fl w-100 mb3">
+      <div class="fl">
+        <mat-icon svgIcon="sb-leaf" class="aska dib v-mid mr1" [style.color]="assignment?.assignment_category?.color"></mat-icon>
+        <span class="dib v-mid">{{ assignment?.assignment_category?.name | uppercase }}</span>
+      </div>
+      <div class="absolute top-1 right-1">
+        <button mat-mini-fab routerLink="/cu/minaungdomar/{{userId}}/assignments/{{assignment?.id}}/edit" class="bg-ocean">
+          <mat-icon svgIcon="sb-pencil" class="aska"></mat-icon>
+        </button>
+      </div>
+      <div class="absolute bottom-1 right-1">
+        <div (click)="showMore(assignment)" class="pointer b mr1 mt3">
+          <span *ngIf="!assignment?.is_toggled">Visa mer</span>
+          <span *ngIf="assignment?.is_toggled">Visa mindre</span>
+        </div>
+      </div>
+    </div>
+    <div class="fl ml4 w-100">
+      <div class="w-100">
+        <p class="b">{{ assignment?.name }}</p>
+        <p *ngIf=" assignment?.end_at ">Slutdatum <strong>{{ assignment.end_at | slice:0:10 }}</strong></p>
+      </div>
+    </div>
+    <div class="ml4 w-100">
+      <div class="pr5 w-100">
+        <p id="text-{{assignment?.id}}" class="w-100 truncate">
+          {{ assignment.description }}
+        </p>
+        <div *ngIf="assignment?.accepted_at && !assignment?.finished_at && assignment?.assignment_status?.name === 'Inväntar godkännande'" id="extra-{{assignment?.id}}" class="w-100 dn">
+          <hr class="sb-hr mb3">
+          <div class="w-100">
+            <p class="b">{{ adolescent?.user_detail?.first_name }} har markerat detta uppdrag som avklarat!</p>
+            <p *ngIf="assignment?.answer" class="b">{{ assignment?.answer }}</p>
+            <p *ngIf="assignment?.image_url">Bifogad bild: <strong><a href="{{ assignment?.image_url }}" target="_blank">Hämta bild</a></strong></p>
+            <div class="w-80 h-100 center mb5">
+              <div class="fl w-50">
+                <button (click)="assignmentAccepted(assignment?.id)" mat-raised-button type="button" class="w-90 bg-arta white">Godkänn</button>
+              </div>
+              <div class="fl w-50">
+                <button (click)="assignmentDeclined(assignment?.id)" mat-raised-button color="" class="fr w-90 bg-aska white">Returnera</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-card>
+  <div *ngIf="assignments.length < 1">
+    <app-empty-list-card [text]="'Inga uppdrag hittades'"></app-empty-list-card>
+  </div>
+</div>
+<div class="fl w-100">
+  <div class="w-80 center">
+    <mat-paginator
+      [length]="length"
+      [pageSize]="pageSize"
+      [pageSizeOptions]="pageSizeOption"
+      (page)="pageEvent = $event">
+    </mat-paginator>
+  </div>
+</div>

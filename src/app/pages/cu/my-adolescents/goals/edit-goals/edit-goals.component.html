@@ -1,0 +1,39 @@
+<div class="w-80 h3 center mb2">
+  <div class="fl mr2">
+    <img src="{{ user?.user_detail?.image_url }}" alt="" class="w3 h3 br-100" onError="this.src='./assets/images/icons/icon_person_default_gbgblue.svg';">
+  </div>
+  <div class="fl">
+    <h2 class="fl lh-copy">{{ user?.user_detail.full_name }}
+      <span class="mh2">·</span>
+      <span class="normal">Redigera mål</span>
+    </h2>
+  </div>
+</div>
+<mat-card class="sb-card big-card bg-primary side-margin-90 side-padding-90 shadow-4-ocean">
+  <div *ngIf="!goal?.finished_at && goal?.goal_status?.name !== 'Avklarat'; else singlePanel" class="w-90 center v-mid h4 mb4">
+    <!--<div class="w-90 center v-mid h4 mb4">-->
+    <div class="w-50 fl">
+      <div class="w-90 center">
+        <app-action-panel [caption]="'Markera målet som avklarat'" [buttonText]="'Markera avklarat'" [icon]="'sb-check-round'" [type]="'arta'"
+          (buttonPushEmitter)="finishGoal()"></app-action-panel>
+      </div>
+    </div>
+    <div class="w-50 fl">
+      <div class="w-90 center">
+        <app-action-panel [caption]="'Ta bort målet och all tillhörande data'" [buttonText]="'Ta bort målet'" [icon]="'sb-trashcan'"
+          [type]="'warn'" (buttonPushEmitter)="openDeleteDialog()"></app-action-panel>
+      </div>
+    </div>
+  </div>
+    <ng-template #singlePanel>
+      <div class="w-40 center">
+        <app-action-panel [caption]="'Ta bort målet och all tillhörande data'" [buttonText]="'Ta bort målet'" [icon]="'sb-trashcan'"
+          [type]="'warn'" (buttonPushEmitter)="openDeleteDialog()"></app-action-panel>
+      </div>
+    </ng-template>
+  
+  <hr class="sb-hr mb1">
+  <div *ngIf="goal" class="pv3">
+    <app-edit-goal-form (editGoalEmitter)="editGoal($event)" (abortEdit)="back()" [user]="user" [goal]="goal"></app-edit-goal-form>
+  </div>
+</mat-card>

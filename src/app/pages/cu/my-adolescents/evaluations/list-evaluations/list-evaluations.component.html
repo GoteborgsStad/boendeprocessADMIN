@@ -1,0 +1,78 @@
+<div class="w-80 h3 center mb2">
+  <div class="fl mr2">
+    <img src="{{ adolescent?.user_detail?.image_url }}" alt="" class="w3 h3 br-100" onError="this.src='./assets/images/icons/icon_person_default_gbgblue.svg';">
+  </div>
+  <div class="fl">
+    <h2 class="fl lh-copy">{{ adolescent?.user_detail.full_name }}
+      <span class="mh2">·</span>
+      <span class="normal">Utvärderingar</span>
+    </h2>
+  </div>
+</div>
+<div class="fl w-100">
+  <div class="w-80 center">
+    <hr class="sb-hr mb3">
+  </div>
+</div>
+<div class="w-80 center">
+  <div class="fl w-100 center">
+    <div class="fl mr2">
+      <h3>Visa utvärderingar:</h3>
+    </div>
+    <div class="fl">
+      <mat-form-field>
+        <mat-select placeholder="Status" [(ngModel)]="status" (ngModelChange)="statusChange($event)">
+          <mat-option [value]="'Alla'">
+            Alla
+          </mat-option>
+          <mat-option *ngFor="let evaluationStatus of evaluationStatuses" [value]="evaluationStatus?.name">
+            {{ evaluationStatus?.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="fr w-40 mt2">
+      <h3 class="fr mt1">Ny utvärdering om {{ daysLeft }} dagar</h3>
+      <mat-icon svgIcon="sb-calendar-n" class="fr aska mr2"></mat-icon>
+    </div>
+  </div>
+</div>
+<div class="fl w-100">
+  <mat-card *ngFor="let evaluation of evaluations | pagination: [pageEvent, status, statusKey]" id="big-card-{{evaluation?.id}}" class="bg-primary sb-card big-card side-margin-90 shadow-4-ocean mb3">
+    <div [ngClass]="{'mb3': evaluation?.evaluation_answers?.length}" class="w-100">
+      <div class="absolute top-1 left-1 mt2">
+        <mat-icon svgIcon="sb-calendar-n" class="aska dib v-mid mr1"></mat-icon>
+      </div>
+      <div class="w-100 ml4">
+        <span class="dib v-mid b">MÅNADSKOLL - {{ evaluation?.created_at | date: 'longDate' }}</span>
+      </div>
+      <div *ngIf="!evaluation?.evaluation_answers.length" class="absolute top-1 right-1">
+        <button mat-raised-button color="primary" routerLink="/cu/minaungdomar/{{ adolescent?.id }}/evaluations/{{ evaluation?.id }}/evaluate" class="w-100">Utvärdera</button>
+      </div>
+    </div>
+    <hr *ngIf="evaluation?.evaluation_answers?.length"  class="sb-hr ml4 mr4 mb3">
+    <div class="w-100 mb3">
+      <div class="w-100 ph5">
+        <div *ngFor="let answer of evaluation?.evaluation_answers" class="w-100">
+          <div class="fl w-10 h2 mr2">
+            <img src="./assets/images/ratings/smile_{{ answer?.rating }}.png" alt="" class="w-85 h-85">
+          </div>
+          <div class="w-85">
+            <span class="b">{{ answer?.evaluation_answer_category?.name }}</span>
+            <p class="ml-68">{{ answer?.body }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-card>
+</div>
+<div class="fl w-100">
+  <div class="w-80 center">
+    <mat-paginator
+      [length]="length"
+      [pageSize]="pageSize"
+      [pageSizeOptions]="pageSizeOption"
+      (page)="pageEvent = $event">
+    </mat-paginator>
+  </div>
+</div>

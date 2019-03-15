@@ -1,0 +1,14 @@
+<div class="mw9 center">
+  <div class="w-100 h2 mb3">
+      <div class="fr w-20 mr3 mt1">
+          <button mat-raised-button color="primary" routerLink="/cu/kontaktpersoner/add" class="fr w-90"><mat-icon svgIcon="sb-add" class="mr1"></mat-icon> Lägg till</button>
+        </div>
+  </div>
+  
+  <div class="cf ph2-ns  side-margin-90 side-padding-90">
+    <div class="fl w-100 w-25-ns pa2" *ngFor="let contactPerson of contactPersons">
+      <app-contact-card (click)="passToSingle(contactPerson)" [contact]="contactPerson">
+      </app-contact-card>
+    </div>
+  </div>
+</div>

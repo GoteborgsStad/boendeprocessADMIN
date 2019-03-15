@@ -1,0 +1,121 @@
+<div class="w-80 h3 center mb2">
+  <div class="fl mr2">
+    <img src="{{ adolescent?.user_detail?.image_url }}" alt="" class="w3 h3 br-100" onError="this.src='./assets/images/icons/icon_person_default_gbgblue.svg';">
+  </div>
+  <div class="fl">
+    <h2 class="fl lh-copy">{{ adolescent?.user_detail.full_name }}
+      <span class="mh2">·</span>
+      <span class="normal">Utvärdering</span>
+    </h2>
+  </div>
+</div>
+<div class="fl w-100">
+  <div class="w-80 center">
+    <hr class="sb-hr mb3">
+  </div>
+</div>
+<div class="fl w-100">
+  <mat-card class="bg-primary sb-card big-card side-margin-90 shadow-4-ocean mb3">
+    <mat-horizontal-stepper [linear]="isLinear" #stepper>
+
+      <mat-step [stepControl]="addEvaluationAnswersForm">
+        <form [formGroup]="addEvaluationAnswersForm">
+          <ng-template matStepLabel>Steg 1</ng-template>
+          
+          <div class="w-100 mb7">
+            <div class="w-100 ph5">
+              <div *ngFor="let stepOne of stepsOne; let i = index" class="w-100">
+                <div class="w-100">
+                  <span class="b mb2">{{ stepOne?.name }}</span>
+                  <div class="fl w-100">
+                    <div *ngFor="let rating of stepOne?.ratings" (click)="checkHighlight(stepOne, rating)" [class.highlight]="rating?.highlight" class="rating dib pointer ba pa1 mr2 mb2 br3 w3 h3">
+                      <img src="./assets/images/ratings/{{ rating?.imageName }}" alt="">
+                    </div>
+                    <div class="w-100">
+                      <mat-form-field class="w-100">
+                        <textarea matInput formControlName="{{ stepOne.selector }}" placeholder="Skriv en kommentar här..." type="text" class="height-105" required></textarea>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="w-100">
+            <div class="fl w-40">
+              <button (click)="location.back()" type="button" mat-raised-button color="warn" class="w-100">Avbryt</button>
+            </div>
+            <div class="fr w-40">
+              <button mat-raised-button matStepperNext color="primary" class="w-100" [disabled]="!addEvaluationAnswersForm.valid">Nästa</button>
+            </div>
+          </div>
+
+        </form>
+      </mat-step>
+
+      <mat-step>
+          <ng-template matStepLabel>Steg 2</ng-template>
+
+          <div class="w-100">
+            <p>Gör en snabb genomgång av de personliga målen för att se om de är uppnådda eller behöver justera sina datum.</p>
+          </div>
+
+          <div class="w-100 ba pa1 br3 mb3 b-color-aska bg-white goals content">
+            <div *ngIf="!plan?.goals.length" class="w-100 ba pa1 br3 b-color-aska bg-default">
+              <div class="tc">
+                <span>Det finns inga mål</span>
+              </div>
+            </div>
+            <div *ngFor="let goal of plan?.goals; let i = index">
+              <div *ngIf="goal?.goal_status?.name !== 'Avklarat'" class="w-100 relative ba pa1 br3 mb2 ph5 pt3 b-color-aska bg-default">
+                <p class="b">{{ goal?.goal_category?.name | uppercase }} - {{ goal?.name }}</p>
+                <p>{{ goal?.description }}</p>
+                <div class="w-40 dib">
+                  <mat-form-field class="w-100">
+                    <input [ngModel]="goal.end_at | date:'yyyy-MM-dd'" [min]="minDate" (dateChange)="goal.end_at = $event.value" (dateChange)="updateEndDate(goal)" (focus)="picker.open()" matInput [matDatepicker]="picker" placeholder="Slutdatum" required>
+                    <mat-datepicker touchUi="true" #picker></mat-datepicker>
+                  </mat-form-field>
+                </div>
+                <div (click)="picker.open()" class="absolute dib mt2 ml2 pt2 pointer">
+                  <mat-icon svgIcon="sb-calendar-n" class="aska"></mat-icon>
+                </div>
+                <div class="fr w-20 mt2">
+                  <button (click)="showConfirmDialog(goal)" type="button" mat-raised-button class="w-100 bg-arta white">Avklarat?</button>
+                </div>
+                <div class="absolute top-1 left-1">
+                  <mat-icon svgIcon="sb-flower" class="aska" [style.color]="goal?.goal_category?.color"></mat-icon>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="w-100">
+            <div class="fl w-40">
+              <button matStepperPrevious type="button" mat-raised-button color="warn" class="w-100">Tillbaka till steg 1</button>
+            </div>
+            <div class="fr w-40">
+              <button (click)="addEvaluationAnswers(addEvaluationAnswersForm)" mat-raised-button matStepperNext color="primary" class="w-100">Spara månadskoll</button>
+            </div>
+          </div>
+
+      </mat-step>
+
+      <mat-step>
+        <ng-template matStepLabel>Färdig</ng-template>
+        <div class="w-100 tc">
+          <h3>Grattis! Utvärderingen är nu färdig!</h3>
+        </div>
+        <div class="w-100 tc mb3">
+          <mat-icon class="arta f-5 icon-80">check_circle</mat-icon>
+        </div>
+        <div class="w-100">
+          <div class="w-40 center">
+            <button (click)="location.back()" type="button" mat-raised-button color="primary" class="w-100">Avsluta</button>
+          </div>
+        </div>
+      </mat-step>
+
+    </mat-horizontal-stepper>
+  </mat-card>
+</div>

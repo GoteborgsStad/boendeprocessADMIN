@@ -1,0 +1,226 @@
+@import '~@angular/material/theming';
+@include mat-core();
+
+// Define a custom typography config that overrides the font-family as well as the
+// `headlines` and `body-1` levels.
+$custom-typography: mat-typography-config(
+  $font-family: 'Roboto, monospace',
+  $headline: mat-typography-level(32px, 48px, 700),
+  $body-1: mat-typography-level(16px, 24px, 500)
+);
+
+$mat-primary-new: (
+  50: #e0eff7,
+  100: #b3d6eb,
+  200: #80bbde,
+  300: #4d9fd0,
+  400: #268bc6,
+  500: #0076bc,
+  600: #006eb6,
+  700: #0063ad,
+  800: #0059a5,
+  900: #004697,
+  A100: #c2daff,
+  A200: #8fbbff,
+  A400: #5c9cff,
+  A700: #428cff,
+    contrast: (
+      50: $black-87-opacity,
+      100: $black-87-opacity,
+      200: $black-87-opacity,
+      300: $black-87-opacity,
+      400: $black-87-opacity,
+      500: white,
+      600: white,
+      700: white,
+      800: white,
+      900: $white-87-opacity,
+      A100: $black-87-opacity,
+      A200: $black-87-opacity,
+      A400: $black-87-opacity,
+      A700: $black-87-opacity,
+    )
+);
+
+$mat-accent-new: (
+  50: #f1f9f9,
+  100: #dbf0f1,
+  200: #c4e6e8,
+  300: #acdcde,
+  400: #9ad5d7,
+  500: #88cdd0,
+  600: #80c8cb,
+  700: #75c1c4,
+  800: #6bbabe,
+  900: #58aeb3,
+  A100: #ffffff,
+  A200: #e6feff,
+  A400: #b3fbff,
+  A700: #9afaff,
+    contrast: (
+      50: $black-87-opacity,
+      100: $black-87-opacity,
+      200: $black-87-opacity,
+      300: $black-87-opacity,
+      400: $black-87-opacity,
+      500: white,
+      600: white,
+      700: white,
+      800: white,
+      900: $white-87-opacity,
+      A100: $black-87-opacity,
+      A200: $black-87-opacity,
+      A400: $black-87-opacity,
+      A700: $black-87-opacity,
+    )
+);
+
+$mat-warn-new: (
+  50: #f7e7e8,
+  100: #eac2c6,
+  200: #dc99a1,
+  300: #ce707b,
+  400: #c4525e,
+  500: #b93342,
+  600: #b22e3c,
+  700: #aa2733,
+  800: #a2202b,
+  900: #93141d,
+  A100: #ffc7ca,
+  A200: #ff949a,
+  A400: #ff616a,
+  A700: #ff4752,
+    contrast: (
+      50: $black-87-opacity,
+      100: $black-87-opacity,
+      200: $black-87-opacity,
+      300: $black-87-opacity,
+      400: $black-87-opacity,
+      500: white,
+      600: white,
+      700: white,
+      800: white,
+      900: $white-87-opacity,
+      A100: $black-87-opacity,
+      A200: $black-87-opacity,
+      A400: $black-87-opacity,
+      A700: $black-87-opacity,
+    )
+);
+
+$my-app-primary: mat-palette($mat-primary-new, 500);
+$my-app-accent:  mat-palette($mat-accent-new, 500, 900, A100);
+$my-app-warn:    mat-palette($mat-warn-new);
+
+$my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
+
+@include angular-material-theme($my-app-theme);
+
+$mat-warn-warn: (
+  50: #f7e7e8,
+  100: #eac2c6,
+  200: #dc99a1,
+  300: #ce707b,
+  400: #c4525e,
+  500: #b93342,
+  600: #b22e3c,
+  700: #aa2733,
+  800: #a2202b,
+  900: #93141d,
+  A100: #ffc7ca,
+  A200: #ff949a,
+  A400: #ff616a,
+  A700: #ff4752,
+    contrast: (
+      50: $black-87-opacity,
+      100: $black-87-opacity,
+      200: $black-87-opacity,
+      300: $black-87-opacity,
+      400: $black-87-opacity,
+      500: white,
+      600: white,
+      700: white,
+      800: white,
+      900: $white-87-opacity,
+      A100: $black-87-opacity,
+      A200: $black-87-opacity,
+      A400: $black-87-opacity,
+      A700: $black-87-opacity,
+    )
+);
+
+$mat-warn-accent: (
+  50: #fdf1e0,
+  100: #fbdbb3,
+  200: #f8c380,
+  300: #f5ab4d,
+  400: #f39926,
+  500: #f18700,
+  600: #ef7f00,
+  700: #ed7400,
+  800: #eb6a00,
+  900: #e75700,
+  A100: #ffffff,
+  A200: #ffe6da,
+  A400: #ffc3a7,
+  A700: #ffb18e,
+    contrast: (
+      50: $black-87-opacity,
+      100: $black-87-opacity,
+      200: $black-87-opacity,
+      300: $black-87-opacity,
+      400: $black-87-opacity,
+      500: white,
+      600: white,
+      700: white,
+      800: white,
+      900: $white-87-opacity,
+      A100: $black-87-opacity,
+      A200: $black-87-opacity,
+      A400: $black-87-opacity,
+      A700: $black-87-opacity,
+    )
+);
+
+$mat-warn-primary: (
+  50: #fdf6e0,
+  100: #fbe9b3,
+  200: #f9db80,
+  300: #f6cc4d,
+  400: #f4c126,
+  500: #f2b600,
+  600: #f0af00,
+  700: #eea600,
+  800: #ec9e00,
+  900: #e88e00,
+  A100: #ffffff,
+  A200: #fff0dc,
+  A400: #ffd9a9,
+  A700: #ffce90,
+    contrast: (
+      50: $black-87-opacity,
+      100: $black-87-opacity,
+      200: $black-87-opacity,
+      300: $black-87-opacity,
+      400: $black-87-opacity,
+      500: white,
+      600: white,
+      700: white,
+      800: white,
+      900: $white-87-opacity,
+      A100: $black-87-opacity,
+      A200: $black-87-opacity,
+      A400: $black-87-opacity,
+      A700: $black-87-opacity,
+    )
+);
+
+.warn-theme {
+  $alternate-primary: mat-palette($mat-warn-primary, 500);
+  $alternate-accent:  mat-palette($mat-warn-accent, 500);
+  $alternate-warn:    mat-palette($mat-warn-warn, 500);
+
+  $alternate-theme: mat-light-theme($alternate-primary, $alternate-accent);
+
+  @include angular-material-theme($alternate-theme);
+}

@@ -1,0 +1,13 @@
+<div class="fl w-100 pa4 br bb bl bw1 b-color-ocean bg-white">
+    
+  <mat-card class="bg-primary sb-card big-card side-margin-90 side-padding-90 shadow-4-ocean pa4">
+    <div class="w-40 center">
+      <app-action-panel [caption]="'Tar bort denna profil'" [buttonText]="'Ta bort mig'" [icon]="'sb-trashcan'"
+      [type]="'warn'" (buttonPushEmitter)="openDeleteMeDialog()"></app-action-panel>
+    </div>
+    <hr class="sb-hr mb2">
+    <div class="w-100">
+      <app-edit-detail-form [me]="me"></app-edit-detail-form>
+    </div>
+  </mat-card>
+</div>

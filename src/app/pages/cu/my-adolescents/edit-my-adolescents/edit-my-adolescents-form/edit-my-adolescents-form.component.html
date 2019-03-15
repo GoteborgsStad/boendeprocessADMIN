@@ -1,0 +1,76 @@
+<form class="add-adolescent-form" (ngSubmit)="editAdolescent()" [formGroup]="editAdolescentForm" class="mb4 pa2">
+  <div formGroupName="user">
+    <mat-form-field class="w-40 mr4">
+      <input formControlName="personal_identity_number" matInput placeholder="Personnummer" required type="text">
+    </mat-form-field>
+    <mat-form-field class="w-40">
+      <input formControlName="created_at" matInput placeholder="Sambuh startdatum" type="text">
+    </mat-form-field>
+    <mat-form-field class="fl w-40 mr4">
+      <input formControlName="first_name" matInput type="text" placeholder="Förnamn" required>
+    </mat-form-field>
+    <mat-form-field class="fl w-40">
+      <input formControlName="last_name" matInput type="text" placeholder="Efternamn" required>
+    </mat-form-field>
+    <mat-form-field class="w-two-thirds">
+      <input formControlName="email" class="" matInput placeholder="E-postadress" required type="email">
+    </mat-form-field>
+    <mat-form-field class="w-two-thirds">
+      <input formControlName="cell_phone_number" class="" matInput placeholder="Telefonnummer" required type="text">
+    </mat-form-field>
+  </div>
+  <div formGroupName="location" class="h3">
+    <mat-form-field class="fl w-40 mr2">
+      <input formControlName="street_address" matInput type="text" placeholder="Gatuadress" required>
+    </mat-form-field>
+    <mat-form-field class="fl w-30 mr2">
+      <input formControlName="city" matInput type="text" placeholder="Stad" required>
+    </mat-form-field>
+    <mat-form-field class="fl w-20 mr2">
+      <input formControlName="zip_code" matInput type="text" placeholder="Postnummer" required>
+    </mat-form-field>
+  </div>
+  <div *ngIf="adolescent?.user_detail?.image_url">
+    <hr class="sb-hr mb1">
+    <app-image-form [imageUrl]="adolescent?.user_detail?.image_url" [showChange]="false" (inputImageEmitter)="updateAvatar($event)"
+      (deleteImageEmitter)="removeAvatar()"></app-image-form>
+  </div>
+  <hr class="sb-hr mb1 mt0">
+  <div class="w-100 h2 mb3">
+    <h4 class="w-50 mb0 aska dark-grey ph3 mb2 fl">Kontaktperson(er):</h4>
+  </div>
+
+  <div class="mw9 center ph3">
+    <div class="cf">
+      <div class="fl w-100 h3 pa0 adolescent-contact dt" *ngFor="let contactPerson of adolescent?.parent_relationships">
+        <div class="w-10 h-100 fl">
+          <img src="{{ contactPerson.parent.user_detail.image_url }}" alt="" onError="this.src='./assets/images/icons/icon_person_default_gbgblue.svg';">
+        </div>
+        <div class="w-30 h-100 fl pt2 pl3">
+          <h1 class="f6 f5-ns fw6 lh-title mv0 truncate">{{ contactPerson.parent.user_detail.full_name}}</h1>
+          <h2 class="f6 fw4 mt0 mb0 normal">{{ contactPerson.parent.user_detail.cell_phone_number }}</h2>
+        </div>
+        <div class="w-10 h-100 fl tc pt2">
+          <button mat-mini-fab color="warn" class="extra-mini" [disabled]="adolescent?.parent_relationships?.length === 1" type="button" (click)="deleteContact(contactPerson.id)">
+            <mat-icon color="white" svgIcon="sb-x"></mat-icon>
+          </button>
+        </div>
+      </div>
+      <div class=" w-10 tc" *ngIf="adolescent?.parent_relationships?.length < 3">
+        <button mat-mini-fab color="primary" class="extra-mini" type="button" (click)="showAddContactDialog()">
+          <mat-icon svgIcon="sb-plus"></mat-icon>
+        </button>
+      </div>
+    </div>
+
+  </div>
+  <hr class="sb-hr mb3">
+  <div class="fl w-100">
+    <div class="fl w-40">
+      <button (click)="location.back()" type="button" mat-raised-button color="warn" class="w-100">Avbryt</button>
+    </div>
+    <div class="fr w-40">
+      <button [disabled]="editAdolescentForm.invalid" mat-raised-button color="primary" class="w-100">Spara</button>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,15 @@
+<form [formGroup]="addChatMessageForm" novalidate (ngSubmit)="addChatMessage(addChatMessageForm)">
+  <div class="fl w-100 mb2 pb1">
+    <div class="fl w-80">
+      <mat-form-field class="w-100">
+        <textarea matInput (keypress)="enter($event)" formControlName="chatMessage" placeholder="Meddelande..." row="3" type="text"></textarea>
+      </mat-form-field>
+    </div>
+    <div class="fr w-20">
+      <button mat-raised-button color="primary" class="fr w-80 h3">Skicka</button>
+    </div>
+  </div>
+  <div class="fl w-100">
+    <mat-checkbox (click)="rememberEnter()" formControlName="isActiveEnter" color="primary" class="nl3 aska">Skicka meddelande med enter</mat-checkbox>
+  </div>
+</form>

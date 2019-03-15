@@ -1,0 +1,23 @@
+<div class="fl w-100 pt2 pr2 pl2">
+  <div class="fl h5 w5 pl5 pt4 absolute">
+    <img src="./assets/images/logos/logo_sambuh.svg" alt="" class="w-90 h-90">
+  </div>
+  <div class="fr">
+    <img src="{{me?.user_detail?.image_url}}" alt="" class="user-avatar br-100"
+      onError="this.src='./assets/images/icons/icon_person_default_gbgblue.svg';">
+  </div>
+  <div class="fr pr2 pb2">
+    <div>Välkommen <strong>{{ me?.user_detail?.first_name }} {{ me?.user_detail?.last_name }}</strong></div>
+    <div class="fr"><button (click)="logout()" mat-raised-button color="primary" class="small-button">LOGGA UT</button></div>
+  </div>
+</div>
+<div class="fl w-100 pt3 bt br bl bw1 b-color-ocean bg-white">
+  <div class="fl w-100 pl7-5 center relative">
+    <div *ngFor="let menu of menus" routerLink="{{menu.routerLink}}" routerLinkActive="active" class="fl tc bb bw1 w-20 pointer b-menu-color">
+      <div class="w-50 center br-100">
+        <img src="{{menu.icon}}" alt="" class="w-75 pa2 br-100 bg-active st1">
+      </div>
+      <div class="mt1 mb3 menu-text">{{ menu.name }}</div>
+    </div>
+  </div>
+</div>

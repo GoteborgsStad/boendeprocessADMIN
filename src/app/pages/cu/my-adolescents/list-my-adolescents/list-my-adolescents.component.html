@@ -1,0 +1,24 @@
+<div class="mw12 center">
+  <mat-form-field class="ml3">
+    <mat-select panelClass="adolescent-panel" placeholder="Visa Ungdomar för" (selectionChange)="setAndFilter($event)"
+      [(ngModel)]="selectedUser">
+      <mat-option *ngFor="let user of contactUsers" [value]="user">
+        {{ user?.user_detail.full_name }}
+        <span *ngIf="user?.is_me">(Du)</span>
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <div class="fr w-20 mr3 mt1">
+    <button mat-raised-button color="primary" routerLink="/cu/minaungdomar/add" class="fr w-90"><mat-icon svgIcon="sb-add" class="mr1"></mat-icon> Lägg till</button>
+  </div>
+  <div *ngIf="user && !user?.is_me" class="contact-info bg-primary-blue br3 h3 w-50 ml3 near-white pa2 normal">
+    <h3 class="ma0 normal">{{ user?.user_detail.full_name }}</h3>
+    <h4 class="mv1 fl w-75 normal">{{ user?.user_detail.email }}</h4>
+    <h5 class="mv1 fl w-25 normal">{{ user?.user_detail.cell_phone_number }}</h5>
+  </div>
+  <div class="cf ph2-ns">
+    <div class="fl w-100 w-25-ns pa2" *ngFor="let adolescentUser of adolescentUsers">
+      <app-adolescent-card [adolescent]="adolescentUser"></app-adolescent-card>
+    </div>
+  </div>
+</div>

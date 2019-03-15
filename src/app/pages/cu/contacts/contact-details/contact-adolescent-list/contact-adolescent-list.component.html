@@ -1,0 +1,14 @@
+<h3 mat-subheader>{{ user?.user_detail.first_name | sName}} ungdomar
+  <span *ngIf="user?.child_relationships">({{ user?.child_relationships.length }})</span>
+</h3>
+<div class="mw9 center">
+  <div class="cf" *ngIf="user.child_relationships">
+    <div class="fl w-100 w-third-ns pa1 adolescent-contact dt" *ngFor="let child of user?.child_relationships">
+      <img class="db br-100 h2 w2 dib mt1" src="{{ child?.child?.user_detail?.image_url }}" alt="" onError="this.src='./assets/images/icons/icon_person_default_gbgblue.svg';">
+      <div class="dtc v-mid w-75">
+        <h1 class="f6 f5-ns fw6 lh-title mv0 as">{{ child?.child?.user_detail?.full_name}}</h1>
+        <h2 class="f6 fw4 mt0 mb0 normal">{{ child?.child?.user_detail?.cell_phone_number }}</h2>
+      </div>
+    </div>
+  </div>
+</div>

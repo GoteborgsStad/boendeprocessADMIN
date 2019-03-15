@@ -1,0 +1,8 @@
+<mat-icon svgIcon="sb-check-round" class="fl mr3 icon-50 arta absolute"></mat-icon>
+<div class="w-80 h2 center mb1">
+  <p class="pt1 b">Är du säker?</p>
+</div>
+<div class="w-80 center">
+  <p class="p0">Är du säker på att målet <strong class="gbgblue">{{ goal?.name }}</strong> är avklarat?</p>
+   <app-confirm-evaluation-form (confirmEvaluationEmitter)="confirmSubmission()" (abortConfirmationEmitter)="this.dialogRef.close()"></app-confirm-evaluation-form>
+</div>

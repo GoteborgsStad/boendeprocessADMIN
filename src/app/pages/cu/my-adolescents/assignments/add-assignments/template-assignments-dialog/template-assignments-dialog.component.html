@@ -1,0 +1,39 @@
+<div class="h3">
+    <div class="w-10 tc fl">
+      <mat-icon svgIcon="sb-folder" class="mr1 morot"></mat-icon>
+    </div>
+    <div class="w-90 fl">
+      <h2 class="mt1 mb1">
+        Uppdragmallar</h2>
+      <p>Markera den mall som du vill utgå ifrån. Efter att du laddar in en målmall kan du ändra målnamn och målbeskrivning som
+        vanligt
+      </p>
+    </div>
+  </div>
+  <hr class="sb-hr mb1">
+  <div class="mt2 b w-40">
+    <div class="w-30 fl pt3">VISA UPPDRAG:</div>
+    <div class="w-70 fl">
+      <mat-form-field class="w-100">
+      <mat-select placeholder="Målkategori" [(ngModel)]="category" name="goal_category_id" (selectionChange)="filterCategoryTemplates($event)">
+        <mat-option value="Alla" selected>
+          Alla
+        </mat-option>
+        <mat-option *ngFor="let goalCat of assignmentCategories" [value]="goalCat?.name">
+          {{ goalCat.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    </div>
+
+  </div>
+  <div class="h5 w-100 overflow-scroll mv2 ba ">
+    <ul class="list pa0 ma0">
+      <li class="h3 bg-primary ma1" *ngFor="let goal of showTemplates " [class.selected]="goal == templateAssignment">
+        <app-category-template (templateSelectedEmitter)="setTemplate(goal)" [goal]="goal"></app-category-template>
+      </li>
+    </ul>
+
+  </div>
+  <button mat-raised-button color="warn" (click)="close()" class="fl w-third">Avbryt</button>
+  <button mat-raised-button color="primary" (click)="apply()" class="fr w-third">Ladda målmall</button>

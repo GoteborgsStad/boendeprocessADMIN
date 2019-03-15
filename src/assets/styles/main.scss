@@ -1,0 +1,135 @@
+@import 'variables';
+@import 'layout';
+@import 'autocomplete';
+@import 'button-toggle';
+@import 'button';
+@import 'card';
+@import 'checkbox';
+@import 'chips';
+@import 'datepicker';
+@import 'dialog';
+@import 'expansion-panel';
+@import 'field';
+@import 'grid-list';
+@import 'icon';
+@import 'list';
+@import 'menu';
+@import 'pagination';
+@import 'progress-bar';
+@import 'progress-spinner';
+@import 'radio-button';
+@import 'select';
+@import 'sidenav';
+@import 'slide-toggle';
+@import 'slider';
+@import 'snackbar';
+@import 'sort-header';
+@import 'stepper';
+@import 'table';
+@import 'tabs';
+@import 'toolbar';
+@import 'tooltip';
+
+body {
+  width: calc(100vw - 20px);
+}
+
+.mat-body-1 {
+  color: $aska-color;
+
+  .ml-68 {
+    margin-left: 68px;
+  }
+}
+
+.dib {
+  display: inline-block !important;
+}
+
+.pl6-5 {
+  padding-left: 13rem;
+}
+.pl7-5 {
+  padding-left: 18rem;
+}
+
+.w-85 {
+ width: 85%;
+}
+
+.pointer {
+  outline: 0;
+}
+
+.white { color: $white !important; }
+.aska { color: $aska-color; }
+.gbgblue { color: $gbgblue-color; }
+.ocean { color: $ocean-color; }
+.rost { color: $rost-color; }
+.senap { color: $senap-color; }
+.morot { color: $morot-color; }
+.arta { color: $arta-color; }
+
+.b-color-gbgblue { border-color: $gbgblue-color; }
+.b-color-ocean { border-color: $ocean-color; }
+.b-color-aska { border-color: $aska-color; }
+.b-color-morot { border-color: $morot-color; }
+.b-color-senap { border-color: $senap-color; }
+.b-color-rost { border-color: $rost-color; }
+
+.bg-default { background-color: $background-color-primary; }
+.bg-white { background-color: $white!important; }
+.bg-primary { background-color: $background-color-primary!important; }
+.bg-primary-blue { background-color: $gbgblue-color!important; }
+.bg-ocean { background-color: $ocean-color!important; }
+.bg-rost { background-color: $rost-color!important; }
+.bg-senap { background-color: $senap-color!important; }
+.bg-morot { background-color: $morot-color!important; }
+.bg-arta { background-color: $arta-color!important; }
+.bg-aska { background-color: $aska-color!important; }
+.bg-dark-grey { background-color: $dark-grey!important; }
+
+.mat-arta { color: $arta-color; }
+.mat-gbgblue { color: $gbgblue-color; }
+.mat-ocean { color: $ocean-color; }
+.mat-dark-grey { color: $dark-grey; }
+.mat-orange { color: $morot-color;}
+.mat-white { color: white;}
+
+.chat {
+  &.content {
+    height: 450px;
+    overflow: scroll;
+
+    pre {
+      font: 400 14px/20px Roboto, "Helvetica Neue", sans-serif;
+      color: #3F5564;
+      display: inline;
+      white-space: pre-wrap;
+      word-break: keep-all;
+      margin: 0;
+    }
+  }
+  &.input {
+    height: 50px;
+
+    textarea {
+      resize: none;
+    }
+  }
+}
+
+.goals {
+  &.content {
+    height: 450px;
+    overflow: scroll;
+  }
+}
+
+.rating {
+  opacity: 0.5;
+
+  &.highlight {
+    opacity: 1.0;
+  }
+}

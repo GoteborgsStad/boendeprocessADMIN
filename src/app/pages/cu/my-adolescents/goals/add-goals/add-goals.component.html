@@ -1,0 +1,14 @@
+<div class="w-80 h3 center mb2">
+  <div class="fl mr2">
+    <img src="{{ user?.user_detail?.image_url }}" alt="" class="w3 h3 br-100" onError="this.src='./assets/images/icons/icon_person_default_gbgblue.svg';">
+  </div>
+  <div class="fl">
+    <h2 class="fl lh-copy">{{ user?.user_detail.full_name }}
+      <span class="mh2">·</span>
+      <span class="normal">Skapa nytt mål</span>
+    </h2>
+  </div>
+</div>
+<mat-card class="sb-card big-card bg-primary side-margin-90 side-padding-30 shadow-4-ocean">
+  <app-add-goal-form (addGoalEmitter)="goalAdded()" [user]="user"></app-add-goal-form>
+</mat-card>

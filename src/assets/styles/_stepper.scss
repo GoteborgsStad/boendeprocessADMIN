@@ -1,0 +1,11 @@
+mat-horizontal-stepper {
+  background-color: #f2f2f2 !important;
+
+  .mat-horizontal-content-container {
+    padding-bottom: 0 !important;
+  }
+}
+
+.mat-horizontal-stepper-header{
+    pointer-events: none !important;
+}

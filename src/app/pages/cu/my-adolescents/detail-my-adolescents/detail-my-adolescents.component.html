@@ -1,0 +1,150 @@
+<div class="w-80 h3 center mb2">
+  <div class="fl mr2">
+    <img src="{{ adolescent?.user_detail?.image_url }}" alt="" class="w3 h3 br-100" onError="this.src='./assets/images/icons/icon_person_default_gbgblue.svg';">
+  </div>
+  <div class="fl">
+    <h2 class="fl lh-copy">{{ adolescent?.user_detail.full_name }}
+      <span class="mh2">·</span>
+      <span class="normal">Överblick</span>
+    </h2>
+  </div>
+</div>
+<mat-card class="sb-card big-card bg-primary side-margin-90 side-padding-30 shadow-4-ocean">
+  <span class="absolute top-1 right-1">
+    <button mat-mini-fab class="bg-ocean" (click)="sendToEdit()">
+      <mat-icon class="aska" svgIcon="sb-pencil"></mat-icon>
+    </button>
+  </span>
+  <mat-card-content>
+    <div class="ph5 aska">
+      <article class="ph3" data-name="slab-stat-small">
+        <div class="cf aska">
+          <dl class="fl w-50 dib-l lh-title mb0">
+            <dd class="f6 fw4 ml0 dark-grey">Personnummer:</dd>
+            <dd class="f4 fw5 ml0 indent">{{ adolescent?.personal_identity_number }}</dd>
+          </dl>
+          <dl class="fl w-50 dib-l lh-title mb0">
+            <dd class="f6 fw4 ml0 dark-grey">Telefon:</dd>
+            <dd class="f4 fw5 ml0 indent">{{ adolescent?.user_detail.cell_phone_number }}</dd>
+          </dl>
+          <dl class="fl w-50 dib-l lh-title mb0">
+            <dd class="f6 fw4 ml0 dark-grey">Adress:</dd>
+            <dd class="f4 fw5 ml0 indent">{{ adolescent?.user_detail.street_address }}</dd>
+          </dl>
+          <dl class="fl w-50 dib-l lh-title mb0">
+            <dd class="f6 fw4 ml0 dark-grey">E-post:</dd>
+            <dd class="f4 fw5 ml0 indent">{{ adolescent?.user_detail.email }}</dd>
+          </dl>
+        </div>
+      </article>
+      <h4 class="mb0 normal aska dark-grey ph3">Kontaktperson:</h4>
+      <div class="mw9 center ph3">
+        <div class="cf">
+          <div class="fl w-100 w-third-ns pa0 adolescent-contact dt" *ngFor="let contactPerson of adolescent?.parent_relationships">
+            <img class="db br-100 h2 w2 dib mt1" src="{{ contactPerson?.parent?.user_detail?.image_url }}" alt="" onError="this.src='./assets/images/icons/icon_person_default_gbgblue.svg';">
+            <div class="dtc v-mid w-75">
+              <h1 class="f6 f5-ns fw6 lh-title mv0 as">{{ contactPerson?.parent?.user_detail?.full_name}}</h1>
+              <h2 class="f6 fw4 mt0 mb0 normal">{{ contactPerson?.parent?.user_detail?.cell_phone_number }}</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr class="sb-hr mb1">
+      <article class="dt w-100 pb0 ph3 mt0" href="#0">
+        <div class="dtc w1 w1-ns v-mid pt1">
+          <mat-icon svgIcon="sb-status-ring" class="db br-100 w1 w1-ns icon-50"
+          [class.ocean]="assignment_status == 0"
+          [class.senap]="assignment_status == 1"
+          [class.rost]="assignment_status == 3"></mat-icon>
+        </div>
+        <div class="dtc v-mid pl2">
+          <h1 class="f6 f5-ns lh-title mv0 aska normal">
+            <span class="ocean fw6">Status - </span>{{ overall_assignment_status }}</h1>
+        </div>
+      </article>
+      <article class="dt w-100 pb0 ph3 mt0" href="#0">
+        <div class="dtc w1 w1-ns v-mid pt1">
+          <mat-icon svgIcon="sb-flower" class="db br-100 w1 w1-ns aska icon-50"></mat-icon>
+        </div>
+        <div class="dtc v-mid pl2">
+          <h1 class="f6 f5-ns  lh-title mv0 aska normal">
+            <span class="ocean fw6">Mål -</span>
+            <span class="b">{{ adolescent?.plan.amount_of_finished_goals }}/{{ adolescent?.plan.amount_of_goals }}</span> mål avklarade sedan startdatum
+            <span class="b">{{ adolescent?.created_at | moment }}</span>
+          </h1>
+        </div>
+      </article>
+      <hr class="sb-hr mb3">
+    </div>
+    <div class="w-90 center ph3-ns aska h4">
+      <div class="flex h3">
+        <div class="w-25 tc ph1 pv2" *ngIf="!getStatus(statusKey.assignment_done) || getStatus(statusKey.assignment_done) === '0'; else book_orange">
+          <button routerLink="/cu/minaungdomar/{{ adolescent?.id }}/assignments"
+          mat-fab class="big adolescent mat-button bg-white">
+            <mat-icon svgIcon="sb-book-a" class="aska"></mat-icon>
+          </button>
+          <h2 class="tc normal">Uppdrag</h2>
+        </div>
+        <div class="w-25 tc ph1 pv2" *ngIf="!getStatus(statusKey.message_from_adolescent) || getStatus(statusKey.message_from_adolescent) === '0'; else letter_orange">
+          <button (click)="$event.cancelBubble = true" routerLink="/cu/minaungdomar/{{ adolescent?.id }}/chat"
+            mat-fab class="big adolescent mat-button bg-white">
+            <mat-icon svgIcon="sb-letter-a" class="aska"></mat-icon>
+          </button>
+          <h2 class="tc normal">Chatt</h2>
+        </div>
+        <div class="w-25 tc ph1 pv2" *ngIf="!timeForEval(); else calendar_orange">
+          <button routerLink="/cu/minaungdomar/{{ adolescent?.id }}/evaluations" mat-fab class="big adolescent mat-button bg-white">
+            <mat-icon svgIcon="sb-calendar-a" class="aska"></mat-icon>
+          </button>
+          <h2 class="tc normal">Månadskollen</h2>
+        </div>
+        <div class="w-25 tc ph1 pv2" *ngIf="getStatus(statusKey.message_from_adolescent); else document_orange">
+          <button (click)="$event.cancelBubble = true" mat-fab routerLink="/cu/minaungdomar/{{ adolescent?.id }}/goals"
+            class="big adolescent mat-button bg-white">
+            <mat-icon svgIcon="sb-document" class="aska"></mat-icon>
+          </button>
+          <h2 class="tc normal">Planen</h2>
+        </div>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>
+
+<ng-template #book_orange>
+  <div class="w-25 tc ph1 pv2">
+    <button routerLink="/cu/minaungdomar/{{ adolescent?.id }}/assignments" mat-fab class=" big adolescent mat-button bg-morot">
+      <mat-icon svgIcon="sb-book-a" class="white"></mat-icon>
+    </button>
+    <h2 class="tc normal">Uppdrag</h2>
+    <p class="tc morot" *ngIf="getStatus(statusKey.assignment_done) !== '0'">{{ getStatus(statusKey.assignment_done) }} aktiva</p>
+  </div>
+</ng-template>
+<ng-template #letter_orange>
+  <div class="w-25 tc ph1 pv2">
+    <button (click)="$event.cancelBubble = true" routerLink="/cu/minaungdomar/{{ adolescent?.id }}/chat"
+      mat-fab class=" big adolescent mat-button bg-morot">
+      <mat-icon svgIcon="sb-letter-a" class="white"></mat-icon>
+    </button>
+    <h2 class="tc normal">Chatt</h2>
+    <p class="tc morot" *ngIf="getStatus(statusKey.message_from_adolescent) !== '0'">{{ getStatus(statusKey.message_from_adolescent) }} nytt</p>
+  </div>
+</ng-template>
+<ng-template #calendar_orange>
+  <div class="w-25 tc ph1 pv2">
+    <button routerLink="/cu/minaungdomar/{{ adolescent?.id }}/evaluations" mat-fab class=" big adolescent mat-button bg-morot" >
+      <mat-icon svgIcon="sb-calendar-a" class="white"></mat-icon>
+    </button>
+    <h2 class="tc normal">Månadskollen</h2>
+    <p class="tc morot">{{ evalTimeLeft() }} dag kvar</p>
+  </div>
+</ng-template>
+<ng-template #document_orange>
+  <div class="w-25 tc ph1 pv2">
+    <button (click)="$event.cancelBubble = true" mat-fab routerLink="/cu/minaungdomar/{{ adolescent?.id }}/goals"
+      class=" big adolescent mat-button bg-morot">
+      <mat-icon svgIcon="sb-document" class="white"></mat-icon>
+    </button>
+    <h2 class="tc normal">Planen</h2>
+    <p class="tc" *ngIf="getStatus(statusKey.message_from_adolescent)">{{ getStatus(statusKey.message_from_adolescent) }}</p>
+  </div>
+</ng-template>

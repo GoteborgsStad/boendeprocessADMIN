@@ -1,0 +1,15 @@
+<div class="w-80 h3 center mb2">
+  <div class="fl mr2">
+    <img src="./assets/images/icons/icon_idBadge_aska.svg" alt="" class="w3 h3 br-100" onError="this.src='./assets/images/icons/icon_person_default_gbgblue.svg';">
+  </div>
+  <div class="fl">
+    <h2 class="fl lh-copy">
+      <span class="normal">Lägg till ny kontaktperson</span>
+    </h2>
+  </div>
+</div>
+<mat-card class="bg-primary sb-card big-card side-margin-90 side-padding-90 shadow-4-ocean pa4 mat-card">
+  <mat-card-content>
+    <app-add-contact-form (addContactEmitter)="addContact($event)"(abortAddContactEmitter)="goBack()"></app-add-contact-form>
+  </mat-card-content>
+</mat-card>

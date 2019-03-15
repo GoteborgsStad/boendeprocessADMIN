@@ -1,0 +1,11 @@
+<mat-card class="sb-card small-card shadow-0 pa2 h4 side-padding-10 vertical-padding-10">
+  <div class="tc mb2">
+    <mat-icon [svgIcon]="icon" [color]="type" class="icon-40"></mat-icon>
+  </div>
+  <div class="tc mb2 w-100">
+    <button (click)="onClick()" mat-raised-button [color]="type" class="w-100">{{ buttonText }}</button>
+  </div>
+  <div class="tc">
+    <small>{{ caption }}</small>
+  </div>
+</mat-card>

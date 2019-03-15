@@ -1,0 +1,19 @@
+<div class="w-80 h3 center mb2">
+  <div class="fl mr2">
+    <img src="{{ adolescent?.user_detail?.image_url }}" alt="" class="w3 h3 br-100" onError="this.src='./assets/images/icons/icon_person_default_gbgblue.svg';">
+  </div>
+  <div class="fl">
+    <h2 class="fl lh-copy">{{ adolescent?.user_detail.full_name }}
+      <span class="mh2">·</span>
+      <span class="normal">Skapa nytt uppdrag</span>
+    </h2>
+  </div>
+</div>
+<div class="fl w-100">
+  <mat-card class="bg-primary sb-card big-card side-margin-90 side-padding-90 shadow-4-ocean">
+    <app-add-assignments-form
+      [assignmentCategories]="assignmentCategories"
+      [assignmentForms]="assignmentForms"
+      [userId]="userId"></app-add-assignments-form>
+  </mat-card>
+</div>

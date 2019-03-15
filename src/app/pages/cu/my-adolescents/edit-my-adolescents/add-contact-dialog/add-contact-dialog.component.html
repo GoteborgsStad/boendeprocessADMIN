@@ -1,0 +1,15 @@
+<form #addContactForm="ngForm" (ngSubmit)="addUser()">
+    <mat-form-field class="w-100">
+        <mat-select placeholder="Lägg till ny kontaktperson" [formControl]="testuser">
+          <mat-option *ngFor="let user of users" [value]="user.id" >{{user.user_detail.full_name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+  <div class="fl w-100">
+    <div class="fl w-40">
+      <button (click)="dialogRef.close()" type="button" mat-raised-button color="warn" class="w-100">Avbryt</button>
+    </div>
+    <div class="fr w-40">
+      <button mat-raised-button color="primary" class="w-100">Lägg till</button>
+    </div>
+  </div>
+</form>

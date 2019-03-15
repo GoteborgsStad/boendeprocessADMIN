@@ -1,0 +1,69 @@
+<mat-card class="sb-card horizontal-padding-20" (click)="passToSingle(adolescent)" [class.look-at-me]="highlight()" [class.b-color-ocean]="!highlight()" >
+  <mat-card-content>
+      <app-status-circle [user]="adolescent"></app-status-circle>
+    <!--<span class="top-left-corner adolescent brdr brdr-blue dib h1 w1 pa2 bg-morot tc lh-solid f5 white br-pill ba bw2" *ngIf="highlight()">!</span>-->
+    
+    <img mat-card-sm-image class="db mb1 user-avatar br-100" src="{{adolescent?.user_detail.image_url}}" alt="" onError="this.src='./assets/images/icons/icon_person_default_gbgblue.svg';"
+    />
+    <dl class="mt2 f6 lh-copy mb1">
+      <h4 class="ml0 mt1 mb0 tc aska">{{ adolescent?.user_detail.full_name }}</h4>
+      <!--<dd class="ml0 tc">{{ adolescent.user_detail.cell_phone_number }}</dd>-->
+      <!--<dd class="ml0 tc">{{ adolescent.user_detail.email }}</dd>-->
+    </dl>
+    <div class="flex h3" >
+      <div class="w-25 tc ph1 pv2" *ngIf="!getStatus(statusKey.assignment_done) || getStatus(statusKey.assignment_done) === '0'; else book_orange">
+        <button (click)="$event.cancelBubble = true" (click)="passToAssignments(adolescent)" mat-mini-fab class="pa0 adolescent h-100 w-100 mat-button bg-white">
+          <mat-icon svgIcon="sb-book-a" color="dark-grey"></mat-icon>
+        </button>
+      </div>
+      <div class="w-25 tc ph1 pv2" *ngIf="!getStatus(statusKey.message_from_adolescent) || getStatus(statusKey.message_from_adolescent) === '0'; else letter_orange">
+        <button (click)="$event.cancelBubble = true" (click)="passToChat(adolescent)" routerLink="my-adolescents/{{ adolescent?.id }}/chat"
+          mat-mini-fab class="pa0 adolescent mat-button h-100 w-100 bg-white">
+          <mat-icon svgIcon="sb-letter-a" color="dark-grey"></mat-icon>
+        </button>
+      </div>
+      <div class="w-25 tc ph1 pv2" *ngIf="allEvaluationsComplete(); else calendar_orange">
+        <button (click)="$event.cancelBubble = true" mat-mini-fab class="pa0 adolescent h-100 w-100 mat-button bg-white" (click)="passToEvaluation(adolescent)">
+          <mat-icon svgIcon="sb-calendar-a" color="dark-grey"></mat-icon>
+        </button>
+      </div>
+      <div class="w-25 tc ph1 pv2" *ngIf="adolescent?.plan && adolescent?.plan?.amount_of_goals > 0; else document_orange">
+        <button (click)="$event.cancelBubble = true" (click)="passToGoals(adolescent)" mat-mini-fab routerLink="{{adolescent?.id}}/goals"
+          class="pa0 adolescent fl mat-button h-100 w-100 bg-white">
+          <mat-icon svgIcon="sb-document" color="dark-grey"></mat-icon>
+        </button>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>
+
+<ng-template #book_orange>
+  <div class="w-25 tc ph1 pv2">
+    <button (click)="$event.cancelBubble = true" (click)="passToAssignments(adolescent)" mat-mini-fab class="pa0 adolescent h-100 w-100 mat-button bg-morot">
+      <mat-icon svgIcon="sb-book-a" color="white"></mat-icon>
+    </button>
+  </div>
+</ng-template>
+<ng-template #letter_orange>
+  <div class="w-25 tc ph1 pv2">
+    <button (click)="$event.cancelBubble = true" (click)="passToChat(adolescent)" routerLink="my-adolescents/{{ adolescent?.id }}/chat"
+      mat-mini-fab class="pa0 adolescent h-100 w-100 mat-button bg-morot">
+      <mat-icon svgIcon="sb-letter-a" color="white"></mat-icon>
+    </button>
+  </div>
+</ng-template>
+<ng-template #calendar_orange>
+  <div class="w-25 tc ph1 pv2">
+    <button (click)="$event.cancelBubble = true" mat-mini-fab class="pa0 adolescent h-100 w-100 mat-button bg-morot" (click)="passToEvaluation(adolescent)">
+      <mat-icon svgIcon="sb-calendar-a" color="white"></mat-icon>
+    </button>
+  </div>
+</ng-template>
+<ng-template #document_orange>
+  <div class="w-25 tc ph1 pv2">
+    <button (click)="$event.cancelBubble = true" (click)="passToGoals(adolescent)" mat-mini-fab routerLink="{{adolescent?.id}}/goals"
+      class="pa0 adolescent fl mat-button h-100 w-100 mat-button bg-morot">
+      <mat-icon svgIcon="sb-document" color="white"></mat-icon>
+    </button>
+  </div>
+</ng-template>

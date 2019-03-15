@@ -1,0 +1,58 @@
+<form [formGroup]="goalsForm" (ngSubmit)="submitGoals()" class="goal-entry">
+  <div formArrayName="goals">
+    <div class="cf" *ngFor="let goal of goals.controls; let i = index;">
+      <div [formGroupName]="i">
+
+        <mat-form-field class="fl w-100 mr4">
+          <input matInput type="text" [id]="i" formControlName="name" name="name" placeholder="Målets namn">
+        </mat-form-field>
+
+        <div class="fl w-60 mr3">
+          <div class="fl w-80">
+            <mat-form-field class="w-100">
+              <mat-select placeholder="Målkategori" [id]="i" formControlName="goal_category_id" name="goal_category_id">
+                <mat-option *ngFor="let goalCat of goalCategories" [value]="goalCat?.id">
+                  {{ goalCat.name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div (click)="openDialog(i)" class="fl mt2 ml2 pt2 pointer">
+            <mat-icon svgIcon="sb-folder" class="aska"></mat-icon>
+          </div>
+        </div>
+
+        <div class="w-50 mr3">
+          <div class="fl w-80">
+            <mat-form-field class="w-100">
+              <input matInput (focus)="picker.open()" formControlName="end_at" [min]="minDate" [matDatepicker]="picker"
+                placeholder="Måldatum">
+              <mat-datepicker (focus)="picker.open()" #picker disabled="false" touchUi="true" md-hide-icons="calendar"></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div (click)="picker.open()" class="fl mt2 ml2 pt2 pointer">
+            <mat-icon svgIcon="sb-calendar-n" class="aska"></mat-icon>
+          </div>
+        </div>
+
+        <mat-form-field class="w-100">
+          <textarea matInput matTextareaAutosize matAutosizeMinRows="7" placeholder="Målbeskrivning" [id]="i" formControlName="description" name="description"></textarea>
+        </mat-form-field>
+
+        <hr class="sb-hr mb1">
+      </div>
+    </div>
+  </div>
+  <div class="h2 center w-third bg-primary pt1">
+    <a mdTooltip="Check me" class="db tc h2" (click)="addGoal()">
+      <mat-icon svgIcon="sb-add" class="fl gbgblue" style="padding-left:24%"></mat-icon>
+      <span class="fl di b" style="margin-top:4px; margin-left:5px">Lägg till ett mål</span>
+    </a>
+  </div>
+
+  <hr class="sb-hr mb1">
+  <div class="tc pv2 h2">
+    <button mat-raised-button type="button" (click)="location.back()" class="fl w-third bg-rost white ">Avbryt</button>
+    <button mat-raised-button type="submit" color="primary" [disabled]="goalsForm.invalid" class="fr w-third">Spara</button>
+  </div>
+</form>

@@ -1,0 +1,28 @@
+.user-avatar {
+  height: 46px;
+  width: 46px;
+}
+.b-menu-color {
+  border-bottom-color: $aska-color;
+}
+.active {
+  position: relative;
+  border-color: $accent-color;
+
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid $accent-color;
+  }
+  .bg-active {
+    background-color: $accent-color;
+  }
+}
+.menu-text {
+  color: $aska-color;
+}

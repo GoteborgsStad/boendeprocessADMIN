@@ -1,0 +1,17 @@
+<div class="w-80 h3 center mb2">
+  <div class="fl mr2">
+    <img src="./assets/images/icons/icon_person_silhouette_aska.svg" alt="" class="w3 h3 br-100" onError="this.src='./assets/images/icons/icon_person_default_gbgblue.svg';">
+  </div>
+  <div class="fl">
+    <h2 class="fl lh-copy">
+      <span class="normal">Lägg till ny ungdom</span>
+    </h2>
+  </div>
+</div>
+<mat-card class="bg-primary sb-card big-card side-margin-90 side-padding-90 shadow-4-ocean pa4">
+  <mat-card-content>
+    <app-add-my-adolescents-form (addContactEmitter)="addedUser($event)"></app-add-my-adolescents-form>
+    <p class="aska">> En koppling mellan Den Interaktiva Genomförandeplanen och <a href="www.bankid.se" target="_blank">BankID</a> kommer att skapas för det angivna personnummret.</p>
+    <p class="aska">> Ett mail med instruktioner för att logga in med BankID kommer att skickas till den angivna e-postadressen.</p>
+  </mat-card-content>
+</mat-card>

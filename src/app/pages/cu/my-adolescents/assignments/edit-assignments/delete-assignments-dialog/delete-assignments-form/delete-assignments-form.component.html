@@ -1,0 +1,8 @@
+<form [formGroup]="deleteAssignmentsForm" novalidate (ngSubmit)="deleteAssignments(deleteAssignmentsForm)">
+  <div class="fl w-50">
+    <button (click)="dialogRef.close()" mat-raised-button type="button" color="warn" class="w-90">Avbryt</button>
+  </div>
+  <div class="fl w-50">
+    <button mat-raised-button color="primary" class="fr w-90">Ta bort</button>
+  </div>
+</form>

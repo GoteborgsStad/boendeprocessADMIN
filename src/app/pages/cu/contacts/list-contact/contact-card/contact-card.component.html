@@ -1,0 +1,17 @@
+<mat-card class="contact">
+  <mat-card-content>
+    <div class="tc">
+      <img mat-card-sm-image class="b--black-10 br-100 db" src="{{ contact?.user_detail?.image_url }}" alt=""
+        onError="this.src='./assets/images/icons/icon_person_default_gbgblue.svg';">
+    </div>
+    <dl class="mt2 f6 lh-copy mb1">
+      <h4 class="ml0 mb0 tc">{{ contact.user_detail.first_name }} {{ contact.user_detail.last_name }}</h4>
+      <dd class="ml0 tc">{{ contact.user_detail.cell_phone_number }}</dd>
+      <!--<dd class="ml0 tc">{{ contact.user_detail.email }}</dd>-->
+    </dl>
+    <a href="mailto:{{ contact.user_detail.email }}">
+      <button (click)="stopBubble($event)" class="email-button" mat-button color="primary">
+        <i class="email-icon"></i>E-mail</button>
+    </a>
+  </mat-card-content>
+</mat-card>

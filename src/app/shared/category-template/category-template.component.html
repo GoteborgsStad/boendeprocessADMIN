@@ -1,0 +1,19 @@
+<div (click)="emitEvent()">
+  <div class="h3 fl w-10 pt2 tc">
+    <mat-icon svgIcon="sb-flower" class="icon-50 aska"></mat-icon>
+  </div>
+  <div class="h3 fl w-90 pv2">
+    <div class="" *ngIf="goal.goal_category; else assignment">
+        <h3 class="mv0">
+            <span class="ttu" >{{ goal?.goal_category?.name }}</span> - {{ goal?.name }}
+          </h3>
+    </div>
+    
+    <small class="ma0">{{ goal?.description }}</small>
+  </div>
+</div>
+
+<ng-template #assignment>
+    <h3 class="mv0">
+  <span class="ttu">{{ goal?.assignment_category?.name }}</span> - {{ goal?.name }}</h3>
+</ng-template>

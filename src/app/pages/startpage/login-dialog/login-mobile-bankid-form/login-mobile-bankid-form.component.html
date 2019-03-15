@@ -1,0 +1,10 @@
+<form [formGroup]="loginForm" novalidate (ngSubmit)="login(loginForm)">
+  <div class="pb2">
+    <mat-form-field class="w-100">
+      <input matInput type="text" formControlName="personalIdentityNumber" placeholder="Personnummer (12 siffror)" required>
+    </mat-form-field>
+  </div>
+  <div class="pb2">
+    <button mat-raised-button color="primary" class="w-100">Logga in</button>
+  </div>
+</form>

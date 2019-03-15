@@ -1,0 +1,19 @@
+<div class="w-80 h3 center mb2">
+  <div class="fl mr2">
+    <img src="{{ adolescent?.user_detail?.image_url }}" alt="" class="w3 h3 br-100" onError="this.src='./assets/images/icons/icon_person_default_gbgblue.svg';">
+  </div>
+  <div class="fl">
+    <h2 class="fl lh-copy">{{ adolescent?.user_detail.full_name }}
+      <span class="mh2">·</span>
+      <span class="normal">Redigera Ungdom</span>
+    </h2>
+  </div>
+</div>
+<mat-card class="bg-primary sb-card big-card side-margin-90 side-padding-90 shadow-4-ocean pa4">
+  <div class="w-40 center">
+    <app-action-panel [caption]="'Ta bort ungdomen och all tillhörande deta'" [buttonText]="'Ta bort ungdom'" [icon]="'sb-trashcan'"
+      [type]="'warn'" (buttonPushEmitter)="showDeleteDialog()"></app-action-panel>
+  </div>
+  <hr class="sb-hr mb2">
+  <app-edit-my-adolescents-form [adolescent]="adolescent" (editAdolescentEmitter)="editAdolescent($event)"></app-edit-my-adolescents-form>
+</mat-card>

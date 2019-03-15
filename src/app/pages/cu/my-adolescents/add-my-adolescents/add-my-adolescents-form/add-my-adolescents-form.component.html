@@ -1,0 +1,27 @@
+<form class="add-adolescent-form" (ngSubmit)="addAdolescent()" [formGroup]="addAdolescentForm" class="mb4">
+  <div formGroupName="user">
+    <mat-form-field class="w-60">
+      <input formControlName="personal_identity_number" matInput placeholder="Personnummer" required value="" type="text">
+    </mat-form-field>
+    <mat-form-field class="fl w-40 mr4">
+      <input formControlName="first_name" matInput type="text" placeholder="Förnamn" required>
+    </mat-form-field>
+    <mat-form-field class="fl w-40">
+      <input formControlName="last_name" matInput type="text" placeholder="Efternamn" required>
+    </mat-form-field>
+    <mat-form-field class="w-two-thirds">
+      <input formControlName="email" class="" matInput placeholder="E-postadress" required value="" type="email">
+    </mat-form-field>
+  </div>
+  <mat-form-field class="w-50">
+    <mat-select placeholder="Kontaktperson(er)" multiple="true" required formControlName="contacts">
+      <mat-option *ngFor="let user of users" [value]="user">
+        {{ user.user_detail.full_name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <div class="center tr w-100 h2">
+    <button mat-raised-button class="fl bg-rost white" type="button" color="warning" (click)="abort()">Avbryt</button>
+    <button mat-raised-button color="primary" [disabled]="addAdolescentForm.invalid" class="fr">Lägg till ungdom</button>
+  </div>
+</form>

@@ -1,0 +1,22 @@
+<mat-icon svgIcon="sb-trashcan" class="fl mr3 icon-50 rost absolute"></mat-icon>
+<div class="w-80 h2 center mb1">
+  <p class="pt1 b">Är du säker?</p>
+</div>
+<div class="w-80 center">
+  <p>Är du säker på att du vill
+    <strong class="rost">ta bort</strong> <strong class="gbgblue">{{ user?.user_detail?.full_name}}</strong>
+    från Den Interaktiva genomförandeplanen? All Information och data kopplat till ungdomen kommer att tas bort.
+    <span class="warn" class="b rost">Detta går inte att ångra</span>
+  </p>
+  <form (ngSubmit)="apply()" [formGroup]="confirmForm">
+    <div class="tc mb3">
+      <mat-checkbox formControlName="confirm" color="primary"><span class="gbgblue">Jag har förstått vad detta innebär</span></mat-checkbox>
+    </div>
+    <div class="fl w-50">
+      <button mat-raised-button type="button" (click)="dialogRef.close()" color="warn" class="fl w-90">Avbryt</button>
+    </div>
+    <div class="fl w-50">
+      <button mat-raised-button type="submit" color="primary" [disabled]="confirmForm.invalid" class="fr w-90">Ta bort</button>
+    </div>
+  </form>
+</div>

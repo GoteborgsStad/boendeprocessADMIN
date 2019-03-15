@@ -1,0 +1,39 @@
+<div class="w-80 h3 center mb2">
+  <div class="fl mr2">
+    <img src="{{ adolescent?.user_detail?.image_url }}" alt="" class="w3 h3 br-100" onError="this.src='./assets/images/icons/icon_person_default_gbgblue.svg';">
+  </div>
+  <div class="fl">
+    <h2 class="fl lh-copy">{{ adolescent?.user_detail.full_name }}
+      <span class="mh2">·</span>
+      <span class="normal">Redigera uppdrag</span>
+    </h2>
+  </div>
+</div>
+<div class="fl w-100">
+  <mat-card class="bg-primary sb-card big-card side-margin-90 side-padding-90 shadow-4-ocean">
+    <div  *ngIf="!assignment?.finished_at && assignment?.assignment_status?.name === 'Inväntar godkännande'; else singlePanel" class="w-90 center v-mid h4 mb4">
+    <!--<div class="w-90 center v-mid h4 mb4">-->
+      <div class="w-50 fl">
+        <div class="w-90 center">
+           <app-action-panel [caption]="'Markera uppdraget som avklarat'" [buttonText]="'Markera avklarat'" [icon]="'sb-check-round'"
+          [type]="'arta'" (buttonPushEmitter)="openFinishAssignmentDialog()"></app-action-panel>
+        </div>
+      </div>
+      <div class="w-50 fl">
+        <div class="w-90 center">
+          <app-action-panel [caption]="'Ta bort uppdraget och all tillhörande data'" [buttonText]="'Ta bort'" [icon]="'sb-trashcan'"
+          [type]="'warn'" (buttonPushEmitter)="openDeleteAssignmentDialog()"></app-action-panel>
+        </div>
+      </div>
+    </div>
+    <ng-template #singlePanel>
+      <div class="w-40 center">
+        <app-action-panel [caption]="'Ta bort uppdraget och all tillhörande data'" [buttonText]="'Ta bort'" [icon]="'sb-trashcan'"
+          [type]="'warn'" (buttonPushEmitter)="openDeleteAssignmentDialog()"></app-action-panel>
+      </div>
+    </ng-template>
+    <hr class="sb-hr mb3">
+    <app-edit-assignments-form [assignmentCategories]="assignmentCategories" [assignmentForms]="assignmentForms" [assignment]="assignment"
+      [userId]="userId"></app-edit-assignments-form>
+  </mat-card>
+</div>

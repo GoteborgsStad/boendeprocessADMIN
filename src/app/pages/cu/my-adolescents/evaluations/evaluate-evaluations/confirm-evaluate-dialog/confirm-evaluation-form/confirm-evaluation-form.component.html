@@ -1,0 +1,9 @@
+<form (ngSubmit)="this.confirmEvaluationEmitter.emit()" [formGroup]="confirmForm">
+  <div class="fl w-50">
+    <button mat-raised-button type="button" (click)="this.abortConfirmationEmitter.emit()" color="warn" class="w-90">Avbryt</button>
+  </div>
+  <div class="fl w-50">
+    <button mat-raised-button type="submit" color="arta" [disabled]="confirmForm.invalid" class="fr w-90">
+        <mat-icon svgIcon="sb-check" class=" absolute left-1 fl mr3 icon-50 white absolute" color="white"></mat-icon>Markera som klart</button>
+  </div>
+</form>

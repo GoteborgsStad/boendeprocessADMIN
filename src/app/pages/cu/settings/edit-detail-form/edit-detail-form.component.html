@@ -1,0 +1,40 @@
+<app-image-form [imageUrl]="me?.user_detail?.image_url" (inputImageEmitter)="getImage($event)" (deleteImageEmitter)="updateImage($event)"></app-image-form>
+<form [formGroup]="updateMeForm" novalidate (ngSubmit)="updateMe(updateMeForm)">
+  <div class="w-100 mt2 pb2">
+    <mat-form-field class="fl w-40 mr4">
+      <input matInput type="text" formControlName="firstName" placeholder="Förnamn" required>
+    </mat-form-field>
+    <mat-form-field class="fl w-40">
+      <input matInput type="text" formControlName="lastName" placeholder="Efternamn" required>
+    </mat-form-field>
+    <mat-form-field class="w-60">
+      <input matInput type="text" formControlName="email" placeholder="E-post" required email>
+    </mat-form-field>
+    <mat-form-field class="w-40">
+      <input matInput type="text" formControlName="phoneNumber" placeholder="Telefonnummer">
+    </mat-form-field>
+  </div>
+  <div class="w-100 mb3">
+    <p>Kontaktperson för: <a routerLink="/cu/minaungdomar" routerLinkActive="active" class="b">{{ me?.amount_of_adolescents }} ungdomar</a></p>
+  </div>
+  <hr class="sb-hr mb3">
+  <div class="w-100 mb3">
+    <p>Jag vill ha e-post när:</p>
+    <div>
+      <mat-slide-toggle formControlName="emailAdolescentsFinishedAssignment" color="primary" class="mb3">När en ungdom har gjort klart ett uppdrag</mat-slide-toggle>
+    </div>
+    <div>
+      <mat-slide-toggle formControlName="emailAdolescentsSentMessage" color="primary" class="mb3">När en ungdom har skickat ett meddelande</mat-slide-toggle>
+    </div>
+    <div>
+      <mat-slide-toggle formControlName="emailReminderForMonthlyEvaluation" color="primary">När det är dags för månadskoll</mat-slide-toggle>
+    </div>
+  </div>
+  <hr class="sb-hr mb4">
+  <div class="fl w-100">
+    <div class="fr w-40">
+      <button mat-raised-button color="primary" class="w-100">Spara</button>
+    </div>
+  </div>
+  &nbsp;
+</form>

@@ -1,0 +1,18 @@
+.add-new-item {
+    p{
+        color: $primary-color;
+        text-transform: uppercase;
+    }
+}
+
+.mat-grid-tile.adolescent-contact {
+    .mat-figure {
+        justify-content: inherit;
+    }
+}
+
+.mat-grid-list.adolescents-menu {
+    .mat-grid-tile .mat-figure {
+        display: block;
+    }
+}
